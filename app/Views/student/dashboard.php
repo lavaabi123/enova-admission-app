@@ -5,6 +5,7 @@
 <div class="row mb-4 align-items-center">
   <div class="col">
     <h3 class="fw-bold mb-0">Welcome, <?= esc(session()->get('user_name')) ?></h3>
+    <p class="text-muted mb-0">Manage your admission application from here.</p>
   </div>
   <?php if ($application): ?>
     <div class="col-auto">
@@ -167,7 +168,11 @@
           ?>
           <div class="status-timeline" id="dashTimeline">
             <?php foreach ($stages as $i => [$stageKey, $stageLabel, $icon, $desc]): ?>
-              <div class="timeline-item <?= $i < $current ? 'done' : ($i === $current ? 'active' : '') ?>">
+              <?php
+                $isFinished = in_array($application['status'], ['approved', 'rejected']);
+                $itemClass  = $isFinished ? 'done' : ($i < $current ? 'done' : ($i === $current ? 'active' : ''));
+              ?>
+              <div class="timeline-item <?= $itemClass ?>">
                 <div class="timeline-icon">
                   <i class="bi bi-<?= $icon ?>"></i>
                 </div>
@@ -240,12 +245,24 @@
     const current = statusOrder[status] ?? 0;
     $('#dashTimeline .timeline-item').each(function (i) {
       $(this).removeClass('done active');
-      if (i < current) $(this).addClass('done');
-      else if (i === current) $(this).addClass('active');
+
+      if (status === 'approved' || status === 'rejected') {
+        // All steps done — last one uses done class too (green)
+        $(this).addClass('done');
+      } else {
+        if (i < current) $(this).addClass('done');
+        else if (i === current) $(this).addClass('active');
+      }
 
       // Update decision text dynamically
       if (i === 2) {
         $(this).find('p').text(timelineDesc[status] || timelineDesc.default);
+        // Change icon for rejected
+        if (status === 'rejected') {
+          $(this).find('.timeline-icon i').attr('class', 'bi bi-x-circle');
+        } else if (status === 'approved') {
+          $(this).find('.timeline-icon i').attr('class', 'bi bi-check-circle');
+        }
       }
     });
   }
@@ -275,6 +292,15 @@
 
       // Update timeline
       updateTimeline(data.status);
+
+      // Update top progress stepper step 4 (Decision)
+      if (data.status === 'approved' || data.status === 'rejected') {
+        $('.step-circle').eq(3).addClass('done');
+        $('.step-circle').eq(3).closest('.col').find('small')
+          .removeClass('text-muted').addClass('text-success fw-semibold');
+        // Also update the step line before decision
+        $('.step-line').eq(2).addClass('done');
+      }
     });
   }
 

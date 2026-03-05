@@ -16,10 +16,25 @@
       <div class="text-white fw-bold mt-1">Enova Admission App Admin</div>
     </div>
     <ul class="nav flex-column gap-1">
-      <li><a href="<?= base_url('admin/dashboard') ?>" class="nav-link text-white-50 admin-nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-      <li><a href="<?= base_url('admin/applications') ?>" class="nav-link text-white-50 admin-nav-link active"><i class="bi bi-clipboard-check me-2"></i>Applications</a></li>
-      <li><a href="<?= base_url('admin/students') ?>" class="nav-link text-white-50 admin-nav-link"><i class="bi bi-people me-2"></i>Students</a></li>
-    </ul>
+  <li>
+    <a href="<?= base_url('admin/dashboard') ?>"
+       class="nav-link text-white-50 admin-nav-link <?= uri_string() === 'admin/dashboard' ? 'active' : '' ?>">
+      <i class="bi bi-speedometer2 me-2"></i>Dashboard
+    </a>
+  </li>
+  <li>
+    <a href="<?= base_url('admin/applications') ?>"
+       class="nav-link text-white-50 admin-nav-link <?= str_starts_with(uri_string(), 'admin/applications') ? 'active' : '' ?>">
+      <i class="bi bi-clipboard-check me-2"></i>Applications
+    </a>
+  </li>
+  <li>
+    <a href="<?= base_url('admin/students') ?>"
+       class="nav-link text-white-50 admin-nav-link <?= uri_string() === 'admin/students' ? 'active' : '' ?>">
+      <i class="bi bi-people me-2"></i>Students
+    </a>
+  </li>
+</ul>
     <div class="mt-auto"><a href="<?= base_url('admin/logout') ?>" class="nav-link text-white-50"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></div>
   </nav>
 

@@ -57,7 +57,7 @@ class AdminController extends BaseController
 
     public function logout(): RedirectResponse
     {
-        session()->remove(['admin_logged_in', 'admin_name']);
+        session()->remove(['admin_logged_in', 'admin_name', 'admin_id', 'admin_email']);
         return redirect()->to('/admin/login');
     }
 

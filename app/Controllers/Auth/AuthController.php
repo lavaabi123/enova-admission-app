@@ -109,7 +109,8 @@ class AuthController extends BaseController
 
     public function logout(): RedirectResponse
     {
-        session()->destroy();
+        session()->remove(['student_logged_in', 'user_id', 'user_name', 'user_email']);
+		//session()->destroy();
         return redirect()->to('/login')->with('success', 'You have been logged out.');
     }
 }
