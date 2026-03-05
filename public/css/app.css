@@ -1,0 +1,257 @@
+/* =============================================
+   Main Stylesheet
+   ============================================= */
+
+:root {
+  --primary:       #b8000e;
+  --primary-dark:  #8c000b;
+  --primary-light: #f5e0e2;
+  --sidebar-bg:    #1a0003;
+  --sidebar-width: 240px;
+
+  /* Override Bootstrap 5 CSS variables globally */
+  --bs-primary:          #b8000e;
+  --bs-primary-rgb:      184, 0, 14;
+  --bs-btn-bg:           #b8000e;
+  --bs-btn-border-color: #b8000e;
+  --bs-link-color:       #b8000e;
+  --bs-link-hover-color: #8c000b;
+}
+
+/* ── Bootstrap primary overrides ── */
+.btn-primary {
+  --bs-btn-bg:                  #b8000e;
+  --bs-btn-border-color:        #b8000e;
+  --bs-btn-hover-bg:            #8c000b;
+  --bs-btn-hover-border-color:  #8c000b;
+  --bs-btn-active-bg:           #6e0009;
+  --bs-btn-active-border-color: #6e0009;
+  --bs-btn-disabled-bg:        #b8000e;
+  --bs-btn-focus-shadow-rgb:   184, 0, 14;
+}
+
+.btn-outline-primary {
+  --bs-btn-color:               #b8000e;
+  --bs-btn-border-color:        #b8000e;
+  --bs-btn-hover-bg:            #b8000e;
+  --bs-btn-hover-border-color:  #b8000e;
+  --bs-btn-active-bg:           #8c000b;
+}
+
+.text-primary   { color: #b8000e !important; }
+.bg-primary     { background-color: #b8000e !important; }
+.border-primary { border-color: #b8000e !important; }
+
+.badge.bg-primary { background-color: #b8000e !important; }
+
+a { color: #b8000e; }
+a:hover { color: #8c000b; }
+
+/* ── Body ── */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #f5f6fa;
+  color: #333;
+}
+
+/* ── Auth pages ── */
+.auth-body {
+  background: linear-gradient(to right, #eff1ff, #ffe7e5) !important;
+}
+
+.auth-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #b8000e;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 8px 24px rgba(184,0,14,0.4);
+}
+
+/* ── Cards ── */
+.card {
+  border-radius: 12px;
+}
+
+/* ── Info blocks ── */
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+.info-block .label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.info-block .value {
+  font-size: 0.95rem;
+}
+
+/* ── Progress steps ── */
+.step-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #adb5bd;
+  transition: background 0.3s, color 0.3s;
+}
+.step-circle.done {
+  background: #198754;
+  color: #fff;
+}
+.step-line {
+  width: 100%;
+  height: 3px;
+  background: #e9ecef;
+  margin-top: 20px;
+}
+.step-line.done {
+  background: #198754;
+}
+
+/* ── Avatar ── */
+.avatar-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #f5e0e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+/* ── Course cards ── */
+.course-card {
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: default;
+  border-radius: 12px !important;
+}
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+}
+
+/* ── Status timeline ── */
+.status-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px 0;
+  border-left: 3px solid #e9ecef;
+  margin-left: 20px;
+  padding-left: 20px;
+  position: relative;
+}
+.timeline-item:last-child {
+  border-left-color: transparent;
+}
+.timeline-item.done {
+  border-left-color: #198754;
+}
+.timeline-item.active {
+  border-left-color: #b8000e;
+}
+.timeline-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -38px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+.timeline-item.done .timeline-icon {
+  background: #198754;
+  color: #fff;
+}
+.timeline-item.active .timeline-icon {
+  background: #b8000e;
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(184,0,14,0.2);
+}
+
+/* ── Navbar ── */
+.navbar {
+  background: #b8000e !important;
+}
+
+/* ── Admin sidebar ── */
+.admin-sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  min-height: 100vh;
+  flex-shrink: 0;
+}
+.admin-nav-link {
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+.admin-nav-link:hover,
+.admin-nav-link.active {
+  background: rgba(255,255,255,0.12);
+  color: #fff !important;
+}
+
+/* ── Password strength ── */
+#pwStrengthBar {
+  transition: width 0.3s, background-color 0.3s;
+}
+
+/* ── Table ── */
+.table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+
+/* ── Badges ── */
+.badge {
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+/* ── Pagination ── */
+.pagination .page-link {
+  border-radius: 6px !important;
+  margin: 0 2px;
+  color: #b8000e;
+}
+.pagination .page-item.active .page-link {
+  background-color: #b8000e;
+  border-color: #b8000e;
+}
+
+/* ── Focus ring ── */
+.btn-primary:focus,
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(184,0,14,0.35);
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #b8000e;
+  box-shadow: 0 0 0 0.2rem rgba(184,0,14,0.2);
+}
